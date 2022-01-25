@@ -1,9 +1,52 @@
 {
   "data": [
     {
-      "id": 1,
-      "name": "Alex",
-      "dateOfBirth": "25.01.1981"
+      "id":1,
+      "name":"Alex",
+      "phone":1111111
+    },
+    {
+      "id":2,
+      "name":"Ivan",
+      "phone":2222222
+    },
+    {
+      "id":3,
+      "name":"John",
+      "phone":3333333
+    },
+    {
+      "id":4,
+      "name":"Max",
+      "phone":4444444
+    },
+    {
+      "id":5,
+      "name":"Ann",
+      "phone":5555555
+    },
+    {
+      "id":6,
+      "name":"Kate",
+      "phone":6666666
+    },
+    {
+      "id":7,
+      "name":"Maria",
+      "phone":7777777},
+    {
+      "id":8,
+      "name":"Vladimir",
+      "phone":8888888
+    },
+    {
+      "id":9,
+      "name":"Boris",
+      "phone":9999999
+    },
+    {"id":10,
+      "name":"Bill",
+      "phone":12345678
     }
   ],
   "posts": []
