@@ -9,7 +9,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/data/', (req, res) => {
-  res.end(JSON.stringify(data))
+  res.end(JSON.stringify(data.data))
 })
 
 app.listen(PORT, () => {
