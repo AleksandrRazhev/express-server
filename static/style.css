@@ -55,18 +55,9 @@ li {
   align-items: center;
 }
 
-.js-hide {
-  display: none;
-}
-
-.js-warning::placeholder {
-  text-transform: uppercase;
-  font-weight: 700;
-  color: red;
-}
-
 .btn {
   position: relative;
+  display: inline-block;
   margin: 0 auto;
   padding: 0.5em;
   line-height: 1em;
@@ -97,8 +88,10 @@ li {
   background-color: #157347;
 }
 
-.link:not(:last-child) {
-  margin-bottom: 1em;
+.title {
+  margin-bottom: 0.5em;
+  font-size: 2em;
+  font-weight: 700;
 }
 
 .form-post {
@@ -126,6 +119,14 @@ li {
   border-radius: 0.5em;
 }
 
+.data__container {
+  text-align: center;
+}
+
+.data__link {
+  margin-bottom: 1em;
+}
+
 .wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -146,4 +147,14 @@ li {
   border-radius: 0.5em;
   color: #fff;
   background-color: #6c757d;
+}
+
+.js-hide {
+  display: none;
+}
+
+.js-warning::placeholder {
+  text-transform: uppercase;
+  font-weight: 700;
+  color: red;
 }
