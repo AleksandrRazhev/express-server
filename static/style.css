@@ -55,6 +55,52 @@ li {
   align-items: center;
 }
 
+.js-hide {
+  display: none;
+}
+
+.js-warning::placeholder {
+  text-transform: uppercase;
+  font-weight: 700;
+  color: red;
+}
+
+.btn {
+  position: relative;
+  margin: 0 auto;
+  padding: 0.5em;
+  line-height: 1em;
+  color: #fff;
+  background-color: #198754;
+  border: 1px solid #fff;
+  border-radius: 0.5em;
+  cursor: pointer;
+  transition: background-color .3s ease-in-out;
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 0.5em;
+  transition: box-shadow .3s ease-in-out;
+}
+
+.btn:active::before {
+  box-shadow: 0 0 0 0.25rem rgb(60, 153, 110)
+}
+
+.btn:hover {
+  background-color: #157347;
+}
+
+.link:not(:last-child) {
+  margin-bottom: 1em;
+}
+
 .form-post {
   display: flex;
   width: 250px;
@@ -80,39 +126,6 @@ li {
   border-radius: 0.5em;
 }
 
-.form-post__button {
-  position: relative;
-  margin: 0 auto;
-  padding: 0.5em;
-  line-height: 1em;
-  color: #fff;
-  background-color: #198754;
-  border: 1px solid #fff;
-  border-radius: 0.5em;
-  cursor: pointer;
-  transition: background-color .3s ease-in-out;
-}
-
-.form-post__button::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  border-radius: 0.5em;
-  transition: box-shadow .3s ease-in-out;
-}
-
-.form-post__button:active::before {
-  box-shadow: 0 0 0 0.25rem rgb(60, 153, 110)
-}
-
-.form-post__button:hover {
-  background-color: #157347;
-}
-
-
 .wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -127,8 +140,10 @@ li {
 .card {
   display: flex;
   flex-direction: column;
+  padding: 1em;
   align-items: center;
   justify-content: center;
-  padding: 1em;
-  background-color: yellow;
+  border-radius: 0.5em;
+  color: #fff;
+  background-color: #6c757d;
 }
