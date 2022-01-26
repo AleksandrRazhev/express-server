@@ -1,14 +1,19 @@
+// import express from 'express'
+
 const express = require('express')
 const app = express()
 const db = require ('./data/db.json')
+const path = require('path')
 
 const PORT = process.env.PORT || 80
-// const PORT = 3000
 
-app.get('/', (req, res) => {
-  // res.end('<h1>Home Page</h1>')
-  res.sendFile(__dirname + "/static/index.html")
-})
+app.use(express.static(path.resolve(__dirname, 'static')))
+
+// app.get('/', (req, res) => {
+//   // res.end('<h1>Home Page</h1>')
+//   // res.sendFile(__dirname + "/static/index.html")
+//   res.sendFile(path.resolve(__dirname, 'static', 'index.html'))
+// })
 
 app.get('/data/', (req, res) => {
   res.end(JSON.stringify(db.data))
