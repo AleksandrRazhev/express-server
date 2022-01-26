@@ -12,5 +12,12 @@
   <h1>Express server started</h1>
   <a href="/data/">Показать данные</a>
   <a href="/posts/">Показать посты</a>
+  <form class="form-post" method="POST" action="">
+    <label class="form-post__label">
+      <span class="form-post__label-text">Введите текст для отправки формы</span>
+      <input class="form-post__input" name="get-response" type="text" placeholder="Enter text">
+    </label>
+    <button class="form-post__button" type="button">Send POST request</button>
+  </form>
 </body>
 </html>

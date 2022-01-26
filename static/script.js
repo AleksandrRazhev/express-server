@@ -20,7 +20,6 @@ function createElement(data, wrapperSelector) {
   });
 }
 
-// fetch('https://express-js-server.herokuapp.com/data/')
 fetch('/data/')
 .then(data => data.json())
 .then(data => {

@@ -23,6 +23,10 @@ app.get('/posts/', (req, res) => {
   res.end(JSON.stringify(db.posts))
 })
 
+app.post('/post/', (req, res) => {
+  
+})
+
 app.listen(PORT, () => {
   console.log(`Server started on port: ${PORT}`)
 })
