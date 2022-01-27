@@ -20,25 +20,6 @@ function createElement(data, wrapperSelector) {
   });
 }
 
-function responsePOST(elem) {
-  const form = document.querySelector(elem);
-  const input = form.querySelector('input');
-  const textHolder = input.placeholder;
-  form.addEventListener('click', (e) => {
-    e.preventDefault();
-    if (e.target.tagName === 'BUTTON') {
-      if (input.value !== '') {
-        input.classList.remove('js-warning');
-        input.placeholder = textHolder;
-        notification(elem);
-      } else {
-        input.classList.add('js-warning');
-        input.placeholder = 'form is not fill!!!';
-      }
-    }
-  });
-}
-
 function notification(elem) {
   const parent = document.querySelector(elem);
   const children = document.querySelectorAll(`${elem} *`);
@@ -57,13 +38,54 @@ function notification(elem) {
   }, 1000);
 }
 
+function responsePOST(elem) {
+  const form = document.querySelector(elem);
+  const input = form.querySelector('input');
+  const textHolder = input.placeholder;
+  form.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (e.target.tagName === 'BUTTON') {
+      if (input.value !== '') {
+
+
+
+        const formData = new FormData(form);
+        const body = {};
+
+        formData.forEach((value, key) => {
+          body[key] = value;
+        });
+
+        fetch('/api/post/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+          },
+          body: JSON.stringify(body)
+        })
+        .then(data => data.json())
+        .then(data => console.log(data));
+
+
+
+        input.classList.remove('js-warning');
+        input.placeholder = textHolder;
+        notification(elem);
+      } else {
+        input.classList.add('js-warning');
+        input.placeholder = 'form is not fill!!!';
+      }
+    }
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelector('.data__link').addEventListener('click', e => {
     e.preventDefault();
     const parentNode = e.target.parentNode;
 
-    fetch('/data/')
+    fetch('/api/data/')
     .then(data => data.json())
     .then(data => {
       const wrapper = 'wrapper';
@@ -75,8 +97,6 @@ document.addEventListener('DOMContentLoaded', () => {
     .catch(error => console.log(error))
     .finally(() => console.log('fetch get end'));
   });
-
-
 
   responsePOST('.form-post');
 
