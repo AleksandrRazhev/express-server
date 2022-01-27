@@ -17,14 +17,14 @@
   </header>
   <section>
     <div class="container">
-      <form class="form-post" method="POST" action="">
-        <label class="form-post__label">
+      <form class="form-post">
+        <label class="form-post__label" for="name-input">
           <span class="form-post__label-text">Введите имя</span>
-          <input class="form-post__input" name="name" type="text" placeholder="Enter name">
+          <input class="form-post__input" id="name-input" name="name" type="text" placeholder="Enter name">
         </label>
-        <label class="form-post__label">
+        <label class="form-post__label" for="message-input">
           <span class="form-post__label-text">Введите сообщение</span>
-          <input class="form-post__input" name="message" type="text" placeholder="Enter message">
+          <input class="form-post__input" id="message-input" name="message" type="text" placeholder="Enter message">
         </label>
         <button class="form-post__button btn" type="button">Send POST request</button>
       </form>

@@ -20,6 +20,18 @@ function createElement(data, wrapperSelector) {
   });
 }
 
+function checkInputsForm(inputList) {
+  let check = true;
+  inputList.forEach(item => {
+    if (item.value === '') {
+      item.classList.add('js-warning');
+      item.placeholder = 'form is not fill!!!';
+      check = false;
+    }
+  });
+  return check;
+}
+
 function notification(elem) {
   const parent = document.querySelector(elem);
   const children = document.querySelectorAll(`${elem} *`);
@@ -40,20 +52,20 @@ function notification(elem) {
 
 function responsePOST(elem) {
   const form = document.querySelector(elem);
-  const input = form.querySelector('input');
-  const textHolder = input.placeholder;
+  const inputList = form.querySelectorAll('input');
+  const textHolderArr = [];
+  inputList.forEach(item => {
+    textHolderArr.push(item.placeholder);
+  });
   form.addEventListener('click', (e) => {
     e.preventDefault();
     if (e.target.tagName === 'BUTTON') {
-      if (input.value !== '') {
-
-
-
+      if (checkInputsForm(inputList)) {
         const formData = new FormData(form);
         const body = {};
 
-        formData.forEach((value, key) => {
-          body[key] = value;
+        formData.forEach((item, i) => {
+          body[i] = item;
         });
 
         fetch('/api/post/', {
@@ -64,16 +76,16 @@ function responsePOST(elem) {
           body: JSON.stringify(body)
         })
         .then(data => data.json())
-        .then(data => console.log(data));
-
-
-
-        input.classList.remove('js-warning');
-        input.placeholder = textHolder;
-        notification(elem);
-      } else {
-        input.classList.add('js-warning');
-        input.placeholder = 'form is not fill!!!';
+        .then(data => console.log(data))
+        .then(() => {
+          inputList.forEach((item, i) => {
+            item.classList.remove('js-warning');
+            item.placeholder = textHolderArr[i];
+          });
+        })
+        .then(() => notification(elem))
+        .catch(error => console.log(error))
+        .finally(() => console.log('fetch post end'));
       }
     }
   });
