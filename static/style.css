@@ -89,7 +89,6 @@ li {
 }
 
 .title {
-  margin-bottom: 0.5em;
   text-align: center;
   font-size: 2em;
   font-weight: 700;
@@ -120,11 +119,13 @@ li {
   border-radius: 0.5em;
 }
 
-.data__container {
+.data__container,
+.posts__container {
   text-align: center;
 }
 
-.data__link {
+.data__link,
+.posts__link {
   margin-bottom: 1em;
 }
 

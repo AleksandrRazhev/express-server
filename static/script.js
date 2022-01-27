@@ -1,24 +1,14 @@
 'use strict';
 
-function createWrapper(parent, className) {
-  const parentElem = document.querySelector(parent);
-  const elem = document.createElement('div');
-  elem.classList.add(className);
-  parentElem.append(elem);
-}
-
-function createElement(data, wrapperSelector) {
-  const wrapper = document.querySelector(`.${wrapperSelector}`);
-  const list = document.createElement('ul');
-  list.classList.add('card');
-  wrapper.append(list);
-  const output = ['name', 'phone'];
-  output.forEach(item => {
-    const elem = document.createElement('li');
-    elem.textContent = data[item];
-    list.append(elem);
-  });
-}
+// function createDomElement(parentSelector, tag, classNameArr) {
+//   const parentElem = document.querySelector(`.${parentSelector}`);
+//   const elem = document.createElement(tag);
+//   classNameArr.forEach(item => {
+//     elem.classList.add(item);
+//   });
+//   parentElem.append(elem);
+//     return elem;
+// }
 
 function checkInputsForm(inputList) {
   let check = true;
@@ -91,24 +81,69 @@ function responsePOST(elem) {
   });
 }
 
+class ShowDataCard {
+  constructor({urlGet, btnClass, parentClass, blockName, wrapper, outputKeys}){
+    this.urlGet = urlGet;
+    this.btnClass = btnClass;
+    this.parentClass = parentClass;
+    this.blockName = blockName;
+    this.wrapper = wrapper;
+    this.outputKeys = outputKeys;
+  }
+  createDomElement(parentSelector, tag, classNameArr) {
+    const parentElem = document.querySelector(`.${parentSelector}`);
+    const elem = document.createElement(tag);
+    classNameArr.forEach(item => {
+      elem.classList.add(item);
+    });
+    parentElem.append(elem);
+      return elem;
+  }
+  cardGenerator(data, parent, blockName, wrapper, output) {
+    this.createDomElement(parent, 'div', [`${blockName}__${wrapper}`, `${wrapper}`]);
+    data.forEach(item => {
+      const list = this.createDomElement(`${blockName}__${wrapper}`, 'ul', ['card']);
+      output.forEach(value => {
+        const elem = document.createElement('li');
+        elem.textContent = item[value];
+        list.append(elem);
+      });
+    });
+    return data;
+  }
+  init() {
+    document.querySelector(`.${this.btnClass}`).addEventListener('click', e => {
+      e.preventDefault();
+  
+      fetch(this.urlGet)
+      .then(data => data.json())
+      .then(data => this.cardGenerator(data, this.parentClass, this.blockName, this.wrapper, this.outputKeys))
+      .then(data => console.log(data))
+      .catch(error => console.log(error))
+      .finally(() => console.log('fetch get end'));
+    });
+  }
+} 
+
 document.addEventListener('DOMContentLoaded', () => {
 
-  document.querySelector('.data__link').addEventListener('click', e => {
-    e.preventDefault();
-    const parentNode = e.target.parentNode;
+  const getsShow = new ShowDataCard ({
+    urlGet: '/api/data/',
+    btnClass: 'data__link',
+    parentClass: 'data__container',
+    blockName: 'data',
+    wrapper: 'wrapper',
+    outputKeys: ['name', 'phone'],
+  }).init();
 
-    fetch('/api/data/')
-    .then(data => data.json())
-    .then(data => {
-      const wrapper = 'wrapper';
-      createWrapper('.data__container', wrapper);
-      data.forEach(item => createElement(item, wrapper));
-      return data;
-    })
-    .then(data => console.log(data))
-    .catch(error => console.log(error))
-    .finally(() => console.log('fetch get end'));
-  });
+  const postsShow = new ShowDataCard ({
+    urlGet: '/api/posts/',
+    btnClass: 'posts__link',
+    parentClass: 'posts__container',
+    blockName: 'posts',
+    wrapper: 'wrapper',
+    outputKeys: ['id', 'name', 'message'],
+  }).init();
 
   responsePOST('.form-post');
 
