@@ -1,15 +1,5 @@
 'use strict';
 
-// function createDomElement(parentSelector, tag, classNameArr) {
-//   const parentElem = document.querySelector(`.${parentSelector}`);
-//   const elem = document.createElement(tag);
-//   classNameArr.forEach(item => {
-//     elem.classList.add(item);
-//   });
-//   parentElem.append(elem);
-//     return elem;
-// }
-
 function checkInputsForm(inputList) {
   let check = true;
   inputList.forEach(item => {
@@ -90,6 +80,15 @@ class ShowDataCard {
     this.wrapper = wrapper;
     this.outputKeys = outputKeys;
   }
+  checkContentParent(parentClass, blockName, wrapper) {
+    const parent = document.querySelector(`.${parentClass}`);
+    const content = parent.querySelectorAll(`.${blockName}__${wrapper}`);
+    if (content) {
+      content.forEach(item => {
+        item.remove();
+      });
+    }
+  }
   createDomElement(parentSelector, tag, classNameArr) {
     const parentElem = document.querySelector(`.${parentSelector}`);
     const elem = document.createElement(tag);
@@ -114,6 +113,8 @@ class ShowDataCard {
   init() {
     document.querySelector(`.${this.btnClass}`).addEventListener('click', e => {
       e.preventDefault();
+
+      this.checkContentParent(this.parentClass, this.blockName, this.wrapper);
   
       fetch(this.urlGet)
       .then(data => data.json())
