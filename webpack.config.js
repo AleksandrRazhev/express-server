@@ -1,12 +1,13 @@
 'use strict';
-const path = require('path');
+import path from 'path';
+const __dirname = path.resolve();
 
-module.exports = {
+export default {
   mode: 'production',
-  entry: './static/js/app.js',
+  entry: path.resolve(__dirname, 'static', 'js', 'app.js'),
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname + '/static/js'),
+    path: path.resolve(__dirname, 'static', 'js'),
   },
   watch: true,
   devtool: 'source-map',

@@ -1,6 +1,6 @@
 'use strict';
-import checkInputsForm from './check_inputs_form';
-import notification from './notification';
+import checkInputsForm from './check_inputs_form.js';
+import notification from './notification.js';
 
 function responsePOST(elem) {
   const form = document.querySelector(elem);

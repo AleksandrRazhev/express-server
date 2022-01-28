@@ -1,8 +1,8 @@
 'use strict';
-import ShowDataCard from './modules/show_data_card';
-import responsePOST from './modules/response_post';
-import checkInputsForm from './modules/check_inputs_form';
-import notification from './modules/notification';
+import ShowDataCard from './modules/show_data_card.js';
+import responsePOST from './modules/response_post.js';
+import checkInputsForm from './modules/check_inputs_form.js';
+import notification from './modules/notification.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 
