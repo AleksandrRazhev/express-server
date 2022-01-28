@@ -1,10 +1,11 @@
-const express = require('express')
-const db = require ('./data/db.json')
-const fs = require('fs')
-const app = express()
-const path = require('path')
-const createObjDatabase = require('./modules/push_post.js')
+import path from 'path'
+import fs from 'fs'
+import express from 'express'
+import createObjDatabase from './modules/create_obj_database.js'
 
+const __dirname = path.resolve()
+const app = express()
+const db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data', 'db.json')))
 const PORT = process.env.PORT || 80
 
 app.use(express.static(path.resolve(__dirname, 'static')))
@@ -20,10 +21,12 @@ app.get('/api/posts/', (req, res) => {
 
 app.post('/api/post/', (req, res) => {
   createObjDatabase(req.body, db.posts)
-  fs.writeFileSync(__dirname + '/data/db.json', JSON.stringify(db));
+  fs.writeFileSync(path.resolve(__dirname, 'data', 'db.json'), JSON.stringify(db));
   res.end(JSON.stringify(db.posts[db.posts.length - 1]))
 })
 
 app.listen(PORT, () => {
   console.log(`Server started on port: ${PORT}`)
 })
+
+export default db

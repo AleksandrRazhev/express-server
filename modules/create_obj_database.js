@@ -1,4 +1,4 @@
-const db = require ('../data/db.json')
+import db from '../index.js'
 
 const createObjDatabase = (data, arr) => {
   let postID
@@ -14,4 +14,4 @@ const createObjDatabase = (data, arr) => {
   db.posts.push(postObj)
 }
 
-module.exports = createObjDatabase
+export default createObjDatabase
