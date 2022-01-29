@@ -1,4 +1,6 @@
 'use strict';
+import '../styles/index.scss';
+
 import ShowDataCard from './modules/show_data_card.js';
 import responsePOST from './modules/response_post.js';
 import checkInputsForm from './modules/check_inputs_form.js';
