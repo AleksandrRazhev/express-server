@@ -1,6 +1,6 @@
 'use strict';
 
-class ShowDataCard {
+class CardsBlock {
   constructor({urlGet, btnClass, parentClass, blockName, wrapper, outputKeys}){
     this.urlGet = urlGet;
     this.btnClass = btnClass;
@@ -39,7 +39,7 @@ class ShowDataCard {
     });
     return data;
   }
-  init() {
+  createBlock() {
     document.querySelector(`.${this.btnClass}`).addEventListener('click', e => {
       e.preventDefault();
 
@@ -55,4 +55,4 @@ class ShowDataCard {
   }
 }
 
-export default ShowDataCard;
+export default CardsBlock;
